@@ -10,7 +10,7 @@ Redmine::Plugin.register :redmine_reporter do
 
   
   permission :reporter, { :reporter => [:index] }, :public => true
-  menu :top_menu, :reporter, { :controller => 'reporter', :action => 'index' }, :caption => 'Reporter', :after => :help
+  menu :top_menu, :reporter, { :controller => 'reporter', :action => 'index' }, { :caption => 'Reports', :after => :help }
 end
 
 
