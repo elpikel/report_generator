@@ -4,6 +4,7 @@ module ReporterHelper
     projects = User.current.memberships.collect(&:project).compact.uniq
     if projects.any?
       s = '<select name="project">'
+      s << "<option value=""></option>"
       projects.each { |p|
         if p.id.to_s == selected_project.to_s
           s << "<option value=\""+p.id.to_s+"\" selected>"+p.name+"</option>"

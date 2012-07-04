@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
  map.connect '/reporter', :controller => 'reporter', :action => 'index'
- map.connect '/reporter/create', :controller => 'reporter', :action => 'create'
- map.connect '/reporter/update', :controller => 'reporter', :action => 'update'
+ map.connect '/reporter/sprint', :controller => 'reporter', :action => 'sprint_report'
+ map.connect '/reporter/generate/sprint', :controller => 'reporter', :action => 'generate_sprint_report'
 end

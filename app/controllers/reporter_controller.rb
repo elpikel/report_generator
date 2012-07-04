@@ -5,7 +5,7 @@ class ReporterController < ApplicationController
   def index
     @filters = Filters.new(:from => params[:from], :to => params[:to], :project => params[:project])
     @user = User.current
-    if @filters.project.nil?
+    if @filters.project.nil? || @filters.project == ""
       conditions = ["#{TimeEntry.table_name}.user_id = ? AND #{TimeEntry.table_name}.spent_on BETWEEN ? AND ?",
                     @user.id, @filters.from, @filters.to]
     else
@@ -18,6 +18,14 @@ class ReporterController < ApplicationController
                               :order => "#{TimeEntry.table_name}.spent_on DESC, #{Project.table_name}.name ASC, #{Tracker.table_name}.position ASC, #{Issue.table_name}.id ASC")
 
     @entries_by_day = @entries.group_by(&:spent_on)
+  end
+
+  def sprint_report
+
+  end
+
+  def generate_sprint_report
+
   end
 
 end
