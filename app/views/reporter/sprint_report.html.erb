@@ -1,0 +1,35 @@
+<div class="contextual">
+  <%= link_to "Sprint general report", :controller => 'reporter', :action => 'sprint_report' %> |
+  <a href="#">To BE DIS...</a>
+</div>
+<p>
+  <% form_tag(:controller => "reporter", :action => "sprint_report") do %>
+      <%= label_tag(:from, "From:") %>
+      <%= text_field_tag(:from, @filters.from, :size => '10')  %> <%= calendar_for('from') %>
+      <%= label_tag(:to, "To:") %>
+      <%= text_field_tag(:to, @filters.to, :size => '10')  %> <%= calendar_for('to') %>
+      <%= label_tag(:project, "Project:") %>
+      <%= render_project_box @filters.project %>
+      <%= label_tag(:sprint, "Sprint:") %>
+      <%= render_sprint_box @filters.project, @filters.version %>
+      <%= submit_tag("Generate") %>
+  <% end %>
+</p>
+
+<% if @report_items.any? %>
+    <table class="list issues">
+      <thead><tr>
+        <th>test</th>
+      </tr></thead>
+      <tbody>
+      <% @report_items.each do |item| -%>
+          <tr>
+            <td class="activity"><%=h item.subject %></td>
+          </tr>
+      <% end -%>
+      </tbody>
+    </table>
+<% end %>
+
+
+

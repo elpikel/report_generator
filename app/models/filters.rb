@@ -1,7 +1,7 @@
 require 'date'
 
 class Filters
-  attr_accessor :from, :to, :project
+  attr_accessor :from, :to, :project, :version
 
   def initialize params
     if params[:from].nil?
@@ -17,5 +17,6 @@ class Filters
     end
 
     @project = params[:project]
+    @version = params[:version]
   end
 end

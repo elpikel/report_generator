@@ -21,10 +21,14 @@ class ReporterController < ApplicationController
   end
 
   def sprint_report
+    @filters = Filters.new(:from => params[:from], :to => params[:to], :project => params[:project], :version => params[:version])
+    @user = User.current
 
-  end
-
-  def generate_sprint_report
+    if !params[:project].nil? && !params[:version].nil?
+      @report_items = Issue.find(:all, :conditions => ["#{Issue.table_name}.project_id = ? AND #{Issue.table_name}.fixed_version_id = ? ", params[:project], params[:version]])
+    else
+      @report_items = []
+    end
 
   end
 
