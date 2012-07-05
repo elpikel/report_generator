@@ -1,5 +1,6 @@
 require 'redmine'
-
+require 'csv'
+Mime::Type.register "application/xls", :xls
 Redmine::Plugin.register :redmine_reporter do
   name 'Redmine Repoter plugin'
   author 'Arkadiusz Plichta'

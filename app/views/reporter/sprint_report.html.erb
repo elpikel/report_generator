@@ -1,6 +1,6 @@
 <div class="contextual">
-  <%= link_to "Sprint general report", :controller => 'reporter', :action => 'sprint_report' %> |
-  <a href="#">To BE DIS...</a>
+  <%= link_to "Spent hours", :controller => 'reporter', :action => 'index' %> |
+  <a href="#">Over hours report</a>
 </div>
 <p>
   <% form_tag(:controller => "reporter", :action => "sprint_report") do %>
@@ -19,17 +19,25 @@
 <% if @report_items.any? %>
     <table class="list issues">
       <thead><tr>
-        <th>test</th>
+        <th>Subject</th>
+        <th>Status</th>
+        <th>Spent hours</th>
+        <th>Story points</th>
       </tr></thead>
       <tbody>
       <% @report_items.each do |item| -%>
           <tr>
             <td class="activity"><%=h item.subject %></td>
+            <td class="activity"><%=h item.status.name %></td>
+            <td class="activity"><%=h item.spent_hours %></td>
+            <td class="activity"><%=h item.story_points %></td>
           </tr>
       <% end -%>
       </tbody>
     </table>
 <% end %>
+
+<%= link_to "Generate report", :controller => 'reporter', :action => 'generate_sprint_report' %>
 
 
 
