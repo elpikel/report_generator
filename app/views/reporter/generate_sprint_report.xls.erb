@@ -5,13 +5,20 @@
           xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
           xmlns:html="http://www.w3.org/TR/REC-html40">
   <Worksheet ss:Name="Sheet1">
+    <!--header-->
     <Table>
       <Row>
         <Cell><Data ss:Type="String">Subject</Data></Cell>
+        <Cell><Data ss:Type="String">Status</Data></Cell>
+        <Cell><Data ss:Type="String">Spent hours</Data></Cell>
+        <Cell><Data ss:Type="String">Story points</Data></Cell>
       </Row>
       <% @report_items.each do |report_item| %>
           <Row>
             <Cell><Data ss:Type="String"><%= report_item.subject %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= report_item.status %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= report_item.spent_hours %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= report_item.story_points %></Data></Cell>
           </Row>
       <% end %>
     </Table>

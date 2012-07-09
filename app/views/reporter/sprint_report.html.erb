@@ -15,6 +15,19 @@
       <%= submit_tag("Generate") %>
   <% end %>
 </p>
+<p style="display:none">
+  <% form_tag({:controller => "reporter", :action => "sprint_report"}, :id => "report_form") do %>
+      <%= label_tag(:from, "From:") %>
+      <%= text_field_tag(:from, @filters.from, :size => '10')  %> <%= calendar_for('from') %>
+      <%= label_tag(:to, "To:") %>
+      <%= text_field_tag(:to, @filters.to, :size => '10')  %> <%= calendar_for('to') %>
+      <%= label_tag(:project, "Project:") %>
+      <%= render_project_box @filters.project %>
+      <%= label_tag(:sprint, "Sprint:") %>
+      <%= render_sprint_box @filters.project, @filters.version %>
+      <%= submit_tag("Generate") %>
+  <% end %>
+</p>
 
 <% if @report_items.any? %>
     <table class="list issues">
@@ -37,7 +50,13 @@
     </table>
 <% end %>
 
-<%= link_to "Generate report", :controller => 'reporter', :action => 'generate_sprint_report' %>
+<%= link_to_function "Generate report", "#", "post_form();" %>
+
+<script>
+  function post_form() {
+      $('#report_form').submit();
+  }
+</script>
 
 
 
